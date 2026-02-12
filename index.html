@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sherkhan & Nuraiym</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -17,86 +17,119 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Montserrat',sans-serif;
-background:#f9f7f4;
-color:#2c2c2c;
+color:white;
+overflow-x:hidden;
 }
 
-/* SECTION */
-.section{
-min-height:100vh;
+/* HERO */
+.hero{
+height:100vh;
+background:url('https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=2070') center/cover no-repeat fixed;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:60px 20px;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
 opacity:0;
 transform:translateY(40px);
-transition:all 1s ease;
-}
-
-.section.show{
-opacity:1;
-transform:translateY(0);
+animation:fadeUp 2s ease forwards;
 }
 
 h1{
-font-family:'Playfair Display',serif;
-font-size:50px;
-margin-bottom:20px;
-letter-spacing:1px;
+font-family:'Cormorant Garamond',serif;
+font-size:60px;
+letter-spacing:2px;
 }
 
 .names{
-font-family:'Playfair Display',serif;
-font-size:46px;
-margin:30px 0;
+font-family:'Cormorant Garamond',serif;
+font-size:55px;
+margin:25px 0;
 }
 
 .date{
-font-size:18px;
+font-size:20px;
 line-height:1.8;
-}
-
-.line{
-width:80px;
-height:1px;
-background:#b9a67a;
-margin:30px auto;
 }
 
 #countdown{
 margin-top:20px;
-font-size:16px;
-color:#777;
+font-size:18px;
+letter-spacing:1px;
 }
 
 button{
 margin-top:40px;
-padding:14px 40px;
-border:1px solid #b9a67a;
+padding:14px 45px;
+border:1px solid white;
 background:transparent;
+color:white;
 font-size:14px;
-letter-spacing:1px;
+letter-spacing:2px;
 cursor:pointer;
 transition:0.3s;
 }
 
 button:hover{
-background:#b9a67a;
-color:white;
+background:white;
+color:black;
+}
+
+/* SECOND BLOCK */
+.section{
+min-height:100vh;
+background:white;
+color:#222;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:100px 20px;
+}
+
+.section h2{
+font-family:'Cormorant Garamond',serif;
+font-size:40px;
+margin-bottom:20px;
+}
+
+.section p{
+max-width:600px;
+line-height:1.8;
+font-size:18px;
 }
 
 iframe{
 width:90%;
-height:350px;
+height:400px;
 border:none;
 margin-top:40px;
 }
 
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 @media(max-width:768px){
-h1{font-size:32px;}
-.names{font-size:28px;}
+h1{font-size:36px;}
+.names{font-size:32px;}
 }
 </style>
 </head>
@@ -104,10 +137,9 @@ h1{font-size:32px;}
 <body>
 
 <!-- HERO -->
-<section class="section">
+<section class="hero">
+<div class="hero-content">
 <h1>Wedding Day</h1>
-
-<div class="line"></div>
 
 <div class="names">
 Sherkhan <br> & <br> Nuraiym
@@ -121,33 +153,31 @@ AEG Grand Hall<br>
 
 <div id="countdown"></div>
 
-<button onclick="document.querySelector('#location').scrollIntoView({behavior:'smooth'})">
-Мекенжай
+<button onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
+Толығырақ
 </button>
+</div>
 </section>
 
-<!-- INVITE TEXT -->
-<section class="section">
-<h1>Құрметті қонақтар!</h1>
-<div class="line"></div>
-<p style="max-width:600px; line-height:1.8; font-size:17px;">
+<!-- ABOUT -->
+<section class="section" id="about">
+<h2>Құрметті қонақтар!</h2>
+<p>
 Сіздерді өміріміздің ең маңызды күні —
 үйлену тойымыздың салтанатты кешіне
 құрметті қонақ болуға шақырамыз.
-Бұл қуанышты сәтті сіздермен бірге бөлісу біз үшін үлкен мәртебе.
+Бұл ерекше сәтті сіздермен бірге бөлісу —
+біз үшін үлкен бақыт.
 </p>
 </section>
 
 <!-- MAP -->
-<section class="section" id="location">
-<h1>Мекенжай</h1>
-<div class="line"></div>
-
+<section class="section">
+<h2>Мекенжай</h2>
 <iframe src="https://maps.google.com/maps?q=44.819566,65.538236&z=16&output=embed"></iframe>
 </section>
 
 <script>
-// Таймер
 var weddingDate = new Date("April 25, 2026 18:00:00").getTime();
 
 setInterval(function() {
@@ -162,17 +192,6 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 document.getElementById("countdown").innerHTML =
 days + " күн " + hours + " сағ " + minutes + " мин " + seconds + " сек";
 }, 1000);
-
-// Scroll animation
-const sections = document.querySelectorAll('.section');
-window.addEventListener('scroll', () => {
-sections.forEach(sec => {
-const top = sec.getBoundingClientRect().top;
-if(top < window.innerHeight - 100){
-sec.classList.add('show');
-}
-});
-});
 </script>
 
 </body>
