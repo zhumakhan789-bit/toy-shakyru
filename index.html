@@ -17,100 +17,101 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Montserrat',sans-serif;
+background:#111;
 color:white;
+overflow-x:hidden;
 }
 
-.section{
+/* HERO */
+.hero{
 height:100vh;
+background:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070') center/cover fixed no-repeat;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
 position:relative;
 }
 
-.hero{
-background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070') center/cover no-repeat;
-}
-
-.overlay{
+.hero::after{
+content:"";
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.55);
+background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
 }
 
-.content{
+.hero-content{
 position:relative;
 z-index:2;
-animation:fadeUp 1.5s ease forwards;
+animation:fadeUp 2s ease forwards;
 opacity:0;
 }
 
 h1{
 font-family:'Cormorant Garamond',serif;
-font-size:55px;
-margin-bottom:10px;
+font-size:60px;
+letter-spacing:2px;
 }
 
 .names{
 font-family:'Cormorant Garamond',serif;
-font-size:48px;
+font-size:50px;
 margin:25px 0;
+color:#d4af37;
 }
 
 .date{
 font-size:20px;
-margin-bottom:10px;
+letter-spacing:1px;
 }
 
 #countdown{
 margin-top:20px;
 font-size:18px;
-letter-spacing:1px;
 }
 
-button{
-margin-top:30px;
-padding:14px 40px;
-border:none;
-border-radius:30px;
+.gold-line{
+width:120px;
+height:2px;
 background:#d4af37;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
+margin:25px auto;
 }
 
-button:hover{
-background:#b9932f;
-transform:scale(1.05);
-}
-
-.map{
+/* SECTION */
+.section{
+padding:120px 20px;
+text-align:center;
 background:#111;
 }
 
+.section h2{
+font-family:'Cormorant Garamond',serif;
+font-size:40px;
+margin-bottom:20px;
+color:#d4af37;
+}
+
+.section p{
+max-width:600px;
+margin:0 auto;
+font-size:18px;
+line-height:1.6;
+}
+
+/* MAP */
 iframe{
 width:90%;
 height:400px;
 border:none;
 border-radius:15px;
+margin-top:40px;
 }
 
+/* ANIMATION */
 @keyframes fadeUp{
-to{
-opacity:1;
-transform:translateY(0);
-}
-from{
-opacity:0;
-transform:translateY(40px);
-}
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 @media(max-width:768px){
@@ -123,11 +124,10 @@ h1{font-size:36px;}
 <body>
 
 <!-- HERO -->
-<section class="section hero">
-<div class="overlay"></div>
-<div class="content">
-<h1>Құрметті қонақтар!</h1>
-<p>Сіздерді қуанышымызға ортақтасуға шақырамыз</p>
+<section class="hero">
+<div class="hero-content">
+<h1>Wedding Invitation</h1>
+<div class="gold-line"></div>
 
 <div class="names">Sherkhan & Nuraiym</div>
 
@@ -138,19 +138,24 @@ AEG Grand Hall<br>
 </div>
 
 <div id="countdown"></div>
-
-<button onclick="document.querySelector('.map').scrollIntoView({behavior:'smooth'})">
-Мекенжайды көру
-</button>
 </div>
 </section>
 
-<!-- MAP SECTION -->
-<section class="section map">
-<h2 style="margin-bottom:20px;">Мекенжай</h2>
+<!-- ABOUT -->
+<section class="section">
+<h2>Құрметті қонақтар!</h2>
+<p>
+Сіздерді өміріміздің ең бақытты күніне арналған
+салтанатты той кешімізге шақырамыз.
+Бұл ерекше сәтті сіздермен бірге бөліскіміз келеді.
+</p>
+</section>
+
+<!-- MAP -->
+<section class="section">
+<h2>Мекенжай</h2>
 
 <iframe src="https://maps.google.com/maps?q=44.819566,65.538236&z=16&output=embed"></iframe>
-
 </section>
 
 <script>
@@ -166,7 +171,7 @@ var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 document.getElementById("countdown").innerHTML =
-"Тойға дейін: " + days + " күн " + hours + " сағ " + minutes + " мин " + seconds + " сек";
+days + " күн " + hours + " сағ " + minutes + " мин " + seconds + " сек";
 }, 1000);
 </script>
 
