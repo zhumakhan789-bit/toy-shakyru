@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шерхан & Нұрайым</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Montserrat',sans-serif;
+    background:linear-gradient(to bottom,#fff,#f8f1e7);
+    text-align:center;
+    color:#6b4e3d;
+}
+
+.hero{
+    padding:80px 20px;
+}
+
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.names{
+    font-size:36px;
+    font-family:'Playfair Display',serif;
+    margin:20px 0;
+}
+
+.date{
+    font-size:22px;
+    margin:15px 0;
+}
+
+.place{
+    font-size:20px;
+    margin-top:10px;
+}
+
+#countdown{
+    margin-top:30px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.section{
+    padding:60px 20px;
+}
+
+iframe{
+    width:90%;
+    height:300px;
+    border-radius:20px;
+    border:none;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.btn{
+    margin-top:40px;
+    padding:15px 35px;
+    border-radius:40px;
+    border:none;
+    font-size:18px;
+    background:linear-gradient(45deg,#d4af37,#f1d37a);
+    color:#fff;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>Құрметті қонақтар!</h1>
+    <p>Сіздерді қуанышымызға ортақтасуға шақырамыз</p>
+
+    <div class="names">Шерхан & Нұрайым</div>
+
+    <div class="date">
+        25 сәуір 2026 • 18:00
+    </div>
+
+    <div class="place">
+        AEG Grand Hall<br>
+        Қызылорда қаласы
+    </div>
+
+    <div id="countdown"></div>
+
+    <button class="btn">Қатысу растау</button>
+</div>
+
+<div class="section">
+    <h2>Мекенжай</h2>
+    <iframe 
+    src="https://www.google.com/maps?q=AEG+Grand+Hall+Kyzylorda&output=embed">
+    </iframe>
+</div>
+
+<script>
+var weddingDate = new Date("April 25, 2026 18:00:00").getTime();
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = weddingDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+  "Тойға дейін: " + days + " күн " + hours + " сағ " + minutes + " мин " + seconds + " сек ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Той басталды!";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
